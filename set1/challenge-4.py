@@ -1,5 +1,4 @@
 import math
-from string import ascii_letters
 
 letter_frequencies = {
     ' ' : 18.28846265,
