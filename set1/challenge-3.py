@@ -38,6 +38,9 @@ def best_match(text_list):
 
     # Find best match
     for text in text_list:
+        if text is None:
+            continue
+        
         text_upper = text.upper()
         penalty = 0
 
@@ -47,7 +50,7 @@ def best_match(text_list):
 
             penalty += abs(freq - eng_freq)
         
-        if penalty < best_penalty:
+        if penalty <= best_penalty:
             best_match = text
             best_penalty = penalty
     
@@ -60,8 +63,11 @@ def ascii_letter_xor(hex_string):
     text_decoded = []
 
     # Find match with best letter frequencies
-    for c in ascii_letters:
-        text_decoded.append(bytes(x ^ ord(c) for x in byte_array).decode("utf-8"))
+    for byte in range(256):
+        try:
+            text_decoded.append(bytes(x ^ byte for x in byte_array).decode("utf-8"))
+        except:
+            text_decoded.append(None)
     
     return text_decoded
 
