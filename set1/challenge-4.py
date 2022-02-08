@@ -57,7 +57,7 @@ def best_match(text_list):
     return best_match
 
 
-def ascii_letter_xor(hex_string):
+def xor_with_all_bytes(hex_string):
     byte_array = bytes.fromhex(hex_string)
 
     text_decoded = []
@@ -75,7 +75,7 @@ lines = open("4.txt").read().split("\n")
 candidate_texts = []
 
 for line in lines:
-    candidate_texts.extend(ascii_letter_xor(line))
+    candidate_texts.extend(xor_with_all_bytes(line))
 
 res = best_match(candidate_texts)
 print(res)

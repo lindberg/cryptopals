@@ -57,7 +57,7 @@ def best_match(text_list):
     return best_match
 
 
-def ascii_letter_xor(hex_string):
+def xor_with_all_bytes(hex_string):
     byte_array = bytes.fromhex(hex_string)
 
     text_decoded = []
@@ -73,7 +73,7 @@ def ascii_letter_xor(hex_string):
 
 hex_string = '1b37373331363f78151b7f2b783431333d78397828372d363c78373e783a393b3736'
 
-text_decoded = ascii_letter_xor(hex_string)
+text_decoded = xor_with_all_bytes(hex_string)
 
 match = best_match(text_decoded)
 
