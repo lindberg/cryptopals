@@ -63,3 +63,4 @@ if __name__ == "__main__":
     res = xor_encode(key, input)
 
     print(res.decode("ascii"))
+    print(key)
