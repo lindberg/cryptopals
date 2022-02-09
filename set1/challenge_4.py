@@ -6,7 +6,9 @@ if __name__ == "__main__":
     candidate_texts = []
 
     for line in lines:
+        line = bytes.fromhex(line)
         candidate_texts.extend(xor_with_all_bytes(line))
 
-    res = best_match(candidate_texts)
+    key, res = best_match(candidate_texts)
+    print(chr(key))
     print(res)

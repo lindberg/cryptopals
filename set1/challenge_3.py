@@ -35,9 +35,10 @@ letter_frequencies = {
 def best_match(text_list):
     best_match = None
     best_penalty = math.inf
+    key = -1
 
     # Find best match
-    for text in text_list:
+    for idx, text in enumerate(text_list):
         if text is None:
             continue
         
@@ -53,19 +54,18 @@ def best_match(text_list):
         if penalty <= best_penalty:
             best_match = text
             best_penalty = penalty
+            key = idx
     
-    return best_match
+    return key, best_match
 
 
-def xor_with_all_bytes(hex_string):
-    byte_array = bytes.fromhex(hex_string)
-
+def xor_with_all_bytes(byte_array):
     text_decoded = []
 
     # Find match with best letter frequencies
     for byte in range(256):
         try:
-            text_decoded.append(bytes(x ^ byte for x in byte_array).decode("utf-8"))
+            text_decoded.append(bytes(x ^ byte for x in byte_array).decode("ascii"))
         except:
             text_decoded.append(None)
     
@@ -74,10 +74,11 @@ def xor_with_all_bytes(hex_string):
 
 
 if __name__ == "__main__":
-    hex_string = '1b37373331363f78151b7f2b783431333d78397828372d363c78373e783a393b3736'
+    byte_array = bytes.fromhex('1b37373331363f78151b7f2b783431333d78397828372d363c78373e783a393b3736')
 
-    text_decoded = xor_with_all_bytes(hex_string)
+    text_decoded = xor_with_all_bytes(byte_array)
 
-    match = best_match(text_decoded)
+    key, match = best_match(text_decoded)
 
+    print(chr(key))
     print(match)
