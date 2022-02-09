@@ -1,5 +1,4 @@
 import base64
-import math
 
 from challenge_2 import xor_byte_arrays
 from challenge_3 import best_match, xor_with_all_bytes
