@@ -1,5 +1,6 @@
 import math
 
+
 letter_frequencies = {
     ' ' : 18.28846265,
     'E' : 10.26665037,
@@ -70,11 +71,13 @@ def xor_with_all_bytes(hex_string):
     
     return text_decoded
 
-lines = open("4.txt").read().split("\n")
-candidate_texts = []
 
-for line in lines:
-    candidate_texts.extend(xor_with_all_bytes(line))
 
-res = best_match(candidate_texts)
-print(res)
+if __name__ == "__main__":
+    hex_string = '1b37373331363f78151b7f2b783431333d78397828372d363c78373e783a393b3736'
+
+    text_decoded = xor_with_all_bytes(hex_string)
+
+    match = best_match(text_decoded)
+
+    print(match)
