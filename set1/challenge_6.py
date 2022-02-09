@@ -63,13 +63,3 @@ if __name__ == "__main__":
     res = xor_encode(key, input)
 
     print(res.decode("ascii"))
-
-    res = []
-    for _ in range(keysize):
-        res.append([])
-
-    for idx, b in enumerate(match):
-        res[idx % keysize].append(b)
-
-
-    res = [b for a in res for b in a]
