@@ -8,7 +8,8 @@ def decrypt_AES_ECB(key, plaintext):
 
     return plaintext
 
-ciphertext = base64.b64decode(open("7.txt").read())
-plaintext = decrypt_AES_ECB(b'YELLOW SUBMARINE', ciphertext)
+if __name__ == "__main__":
+    ciphertext = base64.b64decode(open("7.txt").read())
+    plaintext = decrypt_AES_ECB(b'YELLOW SUBMARINE', ciphertext)
 
-print(plaintext.decode("utf-8"))
+    print(plaintext.decode("utf-8"))
