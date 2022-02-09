@@ -35,7 +35,7 @@ letter_frequencies = {
 def best_match(text_list):
     best_match = None
     best_penalty = math.inf
-    key = -1
+    key = None
 
     # Find best match
     for idx, text in enumerate(text_list):
