@@ -78,7 +78,7 @@ if __name__ == "__main__":
 
     text_decoded = xor_with_all_bytes(byte_array)
 
-    key, match = best_match(text_decoded)
+    key, plaintext = best_match(text_decoded)
 
-    print(chr(key))
-    print(match)
+    print(f"key: {chr(key)}")
+    print(f"plaintext: {plaintext}")

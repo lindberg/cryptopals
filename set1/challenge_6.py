@@ -59,7 +59,7 @@ if __name__ == "__main__":
         match.extend(m)
         key.append(key_byte)
 
-    key = bytes(key).decode("ascii")
+    key = bytes(key)
 
     res = xor_encode(key, input)
 

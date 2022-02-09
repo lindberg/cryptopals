@@ -9,6 +9,6 @@ if __name__ == "__main__":
         line = bytes.fromhex(line)
         candidate_texts.extend(xor_with_all_bytes(line))
 
-    key, res = best_match(candidate_texts)
-    print(chr(key))
-    print(res)
+    key, plaintext = best_match(candidate_texts)
+    print(f"key: {chr(key)}")
+    print(f"plaintext: {plaintext}")
