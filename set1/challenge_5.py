@@ -18,4 +18,3 @@ if __name__ == "__main__":
 
     res = xor_encode("ICE", str.encode(input))
     print(res.hex())
-

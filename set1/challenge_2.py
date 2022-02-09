@@ -1,6 +1,7 @@
 def xor_byte_arrays(byte_array1, byte_array2):
     return bytes(x ^ y for (x,y) in zip(byte_array1, byte_array2))
-    
+
+
 
 if __name__ == "__main__":
     hex_string1 = '1c0111001f010100061a024b53535009181c'

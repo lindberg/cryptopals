@@ -57,7 +57,6 @@ def best_match(text_list):
             best_penalty = penalty
             key = idx
     
-    #print(chr(key))
     return key, best_match
 
 
@@ -85,63 +84,54 @@ def hamming_distance(bytes1, bytes2):
     return distance
 
 
-input = base64.b64decode(open("6.txt").read())
 
-keysizes = []
+if __name__ == "__main__":
+    input = base64.b64decode(open("6.txt").read())
 
-for keysize in range(2,41):
-    dist = hamming_distance(input[0:keysize], input[keysize:keysize*2]) / keysize
-    dist += hamming_distance(input[keysize*2:keysize*3], input[keysize*3:keysize*4]) / keysize
-    dist += hamming_distance(input[keysize*3:keysize*4], input[keysize*4:keysize*5]) / keysize
-    dist += hamming_distance(input[keysize*4:keysize*5], input[keysize*5:keysize*6]) / keysize
-    #dist += hamming_distance(input[keysize*5:keysize*6], input[keysize*6:keysize*7]) / keysize
-    dist = dist / 4
-    #print(keysize)
-    #print(dist)
-    keysizes.append((keysize, dist))
+    keysizes = []
 
-keysizes = sorted(keysizes, key=lambda x: x[1])
-#print(keysizes)
-keysizes = [keysize for (keysize, _) in keysizes[0:3]]
+    for keysize in range(2,41):
+        dist = hamming_distance(input[0:keysize], input[keysize:keysize*2]) / keysize
+        dist += hamming_distance(input[keysize*2:keysize*3], input[keysize*3:keysize*4]) / keysize
+        dist += hamming_distance(input[keysize*3:keysize*4], input[keysize*4:keysize*5]) / keysize
+        dist += hamming_distance(input[keysize*4:keysize*5], input[keysize*5:keysize*6]) / keysize
+        dist = dist / 4
+        keysizes.append((keysize, dist))
 
-keysize = 29
+    keysizes = sorted(keysizes, key=lambda x: x[1])
+    keysizes = [keysize for (keysize, _) in keysizes[0:3]]
 
-blocks = []
+    keysize = 29
 
-for _ in range(keysize):
-    blocks.append([])
+    blocks = []
 
-for idx, b in enumerate(input):
-    blocks[idx % keysize].append(b)
-    #print(idx % keysize)
+    for _ in range(keysize):
+        blocks.append([])
 
-match = []
-key = []
+    for idx, b in enumerate(input):
+        blocks[idx % keysize].append(b)
 
-for block in blocks:
-    text_decoded = xor_with_all_bytes(block)
-    key_byte, m = best_match(text_decoded)
-    match.extend(m)
-    key.append(key_byte)
+    match = []
+    key = []
 
-    #print(best_match(text_decoded))
-    #break
+    for block in blocks:
+        text_decoded = xor_with_all_bytes(block)
+        key_byte, m = best_match(text_decoded)
+        match.extend(m)
+        key.append(key_byte)
 
-key = bytes(key).decode("ascii")
+    key = bytes(key).decode("ascii")
 
-res = xor_encode(key, input)
+    res = xor_encode(key, input)
 
-print(res.decode("ascii"))
-#print(res)
+    print(res.decode("ascii"))
 
-res = []
-for _ in range(keysize):
-    res.append([])
+    res = []
+    for _ in range(keysize):
+        res.append([])
 
-for idx, b in enumerate(match):
-    res[idx % keysize].append(b)
+    for idx, b in enumerate(match):
+        res[idx % keysize].append(b)
 
 
-res = [b for a in res for b in a]
-#print("".join(res))
-#print(bytes(blocks[keysize-1]).decode("utf-8"))
+    res = [b for a in res for b in a]
