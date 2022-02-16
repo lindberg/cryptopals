@@ -6,7 +6,7 @@ def hex2base64(hex_string):
     while len(bitstring) % 6 != 0:
         bitstring = "0" + bitstring
 
-    # divide into 6bit chunks
+    # divide into 6 bit chunks
     chunks = [bitstring[i:i+6] for i in range(0, len(bitstring), 6)]
 
     res = ""
